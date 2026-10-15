@@ -9,7 +9,7 @@ import { decoratorNames, DOCS } from './util.js';
 export default {
   meta: {
     type: 'suggestion',
-    docs: { description: '컨트롤러·서비스·모듈·DTO 를 역할마다 다른 파일에 둔다', url: DOCS },
+    docs: { url: `${DOCS}/pages/f333b6b0-1f94-4972-b498-6f78e190f6f9`, description: '컨트롤러·서비스·모듈·DTO 를 역할마다 다른 파일에 둔다' },
     schema: [],
     messages: {
       moduleWithController: '@Module 과 @Controller 를 한 파일에 두지 않는다 — {{name}} 을(를) 따로 *.controller.ts 로 옮긴다.',

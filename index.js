@@ -12,7 +12,7 @@ import requiredFiles from './rules/required-files.js';
  *   export default [...conventions.configs.recommended];
  */
 const plugin = {
-  meta: { name: '@sororiri/conventions', version: '0.1.0' },
+  meta: { name: '@sororiri/conventions', version: '0.1.1' },
   rules: {
     'file-per-role': filePerRole,
     'required-files': requiredFiles,
