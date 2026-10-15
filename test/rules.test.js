@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import tseslint from 'typescript-eslint';
 import classSuffix from '../rules/class-suffix.js';
 import filePerRole from '../rules/file-per-role.js';
+import noSqlInController from '../rules/no-sql-in-controller.js';
 import requiredFiles from '../rules/required-files.js';
 
 RuleTester.describe = describe;
@@ -69,5 +70,22 @@ tester.run('class-suffix', classSuffix, {
   invalid: [
     { filename: 'src/notes/notes.controller.ts', code: "@Controller('notes') export class Notes {}", errors: [{ messageId: 'controller' }] },
     { filename: 'src/notes/notes.service.ts', code: '@Injectable() export class NotesRepo {}', errors: [{ messageId: 'service' }] },
+  ],
+});
+
+tester.run('no-sql-in-controller', noSqlInController, {
+  valid: [
+    { filename: 'src/notes/notes.service.ts', code: "db.query('SELECT id FROM notes WHERE id = $1', [id])", name: '서비스의 SQL 은 된다' },
+    { filename: 'src/notes/notes.controller.ts', code: "throw new BadRequestException('Update failed')", name: '키워드 하나는 SQL 이 아니다' },
+    { filename: 'src/notes/notes.controller.ts', code: "throw new NotFoundException('삭제할 메모가 없다 — delete 는 한 번만')" },
+    { filename: 'src/notes/notes.controller.ts', code: "class A { @ApiOperation({ summary: 'select 할 메모를 고른다' }) x() {} }", name: '문장 중간의 단어는 SQL 이 아니다' },
+  ],
+  invalid: [
+    { filename: 'src/p/public.controller.ts', code: "db.query('SELECT id, name FROM projects WHERE public_key = $1', [k])", errors: [{ messageId: 'sql' }] },
+    { filename: 'src/p/p.controller.ts', code: 'db.query(`\n  select *\n  from pages where id = ${id}`)', errors: [{ messageId: 'sql' }], name: '템플릿 문자열·소문자·줄바꿈' },
+    { filename: 'src/p/p.controller.ts', code: "q('INSERT INTO notes (title) VALUES ($1)')", errors: [{ messageId: 'sql' }] },
+    { filename: 'src/p/p.controller.ts', code: "q('UPDATE notes SET title = $1')", errors: [{ messageId: 'sql' }] },
+    { filename: 'src/p/p.controller.ts', code: "q('DELETE FROM notes WHERE id = $1')", errors: [{ messageId: 'sql' }] },
+    { filename: 'src/p/p.controller.ts', code: "q('WITH t AS (SELECT 1) SELECT * FROM t')", errors: [{ messageId: 'sql' }] },
   ],
 });

@@ -1,6 +1,6 @@
 /** 규칙들이 함께 쓰는 도구. */
 
-/** 규칙마다의 이유가 있는 명세 (specmu 의 conventions 프로젝트). 규칙 페이지는 `${DOCS}/pages/<id>`. */
+/** 규칙 목록·붙이는 법·예외 정책이 있는 명세 (specmu 의 conventions 프로젝트). 규칙의 안내 링크는 여기로. */
 export const DOCS = 'https://specmu.memomu.uk/conventions';
 
 /** 클래스에 붙은 데코레이터 이름들 — `@Controller('x')` · `@Module({...})` · `@Injectable()` → ['Controller', …] */

@@ -1,6 +1,6 @@
 {
   "name": "@sororiri/conventions",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "프로젝트 공통 코드 관례를 ESLint 규칙으로 강제한다",
   "type": "module",
   "main": "index.js",

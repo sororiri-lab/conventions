@@ -13,7 +13,7 @@ import { decorator, DOCS } from './util.js';
 export default {
   meta: {
     type: 'problem',
-    docs: { url: `${DOCS}/pages/3b328cc4-adde-4fde-863e-b2460eb097f5`, description: '모듈 폴더에 controller·service·dto 파일이 있어야 한다' },
+    docs: { url: DOCS, description: '모듈 폴더에 controller·service·dto 파일이 있어야 한다' },
     schema: [],
     messages: {
       missing: '{{feature}} 모듈에 필요한 파일이 없다: {{files}}',

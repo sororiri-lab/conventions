@@ -8,7 +8,7 @@ import { decoratorNames, DOCS } from './util.js';
 export default {
   meta: {
     type: 'suggestion',
-    docs: { url: `${DOCS}/pages/ed590072-f31f-4b9e-a5ca-373747bb4ea6`, description: '컨트롤러는 …Controller, 서비스는 …Service 로 이름을 끝낸다' },
+    docs: { url: DOCS, description: '컨트롤러는 …Controller, 서비스는 …Service 로 이름을 끝낸다' },
     schema: [],
     messages: {
       controller: '@Controller 클래스 이름은 Controller 로 끝난다: {{name}}',
